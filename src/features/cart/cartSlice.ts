@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createSelector, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../app/types';
 
 export interface CartState {
@@ -36,3 +36,16 @@ export function getNumItems(state: RootState) {
 
   return numItem;
 }
+
+export const getMemoizedNumItems = createSelector(
+  (state: RootState) => state.cart.items,
+  (items) => {
+    let numItem = 0;
+
+    Object.values(items).forEach((itemCount) => {
+      numItem += itemCount;
+    });
+
+    return numItem;
+  },
+);
