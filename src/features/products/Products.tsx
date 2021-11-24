@@ -1,21 +1,24 @@
-import { useEffect, useState } from 'react';
-import { getProducts, Product } from '../../app/api';
+import { useEffect } from 'react';
+import { getProducts } from '../../app/api';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import styles from './Products.module.css';
+import { receivedProducts } from './productsSlice';
 
 export const Products = () => {
-  const [products, setProducts] = useState<Product[]>([]);
+  const dispatch = useAppDispatch();
+  const { products } = useAppSelector((state) => state.products);
 
   useEffect(() => {
     (async () => {
       const data = await getProducts();
-      setProducts(data);
+      dispatch(receivedProducts(data));
     })();
-  }, []);
+  }, [dispatch]);
 
   return (
     <main className="page">
       <ul className={styles.products}>
-        {products.map((product) => (
+        {Object.values(products).map((product) => (
           <li key={product.id}>
             <article className={styles.product}>
               <figure>
