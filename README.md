@@ -7,15 +7,9 @@ Example shopping cart application for learning redux and redux toolkit. Goes alo
 Checkout the code base and then type:
 
 ```
-npm install
-npm run dev
+yarn install
+yarn run dev
 ```
-
-## Lessons
-
-The `lessons/` folder contains a unique folder for each lesson including a README with a description of that lesson and any files that were modified as part of that lesson.
-
-The final state of the application can also be found in the `final` branch.
 
 ## Technologies
 
