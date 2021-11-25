@@ -1,11 +1,23 @@
-import { createSlice, createSelector, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../../app/types';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { checkout } from '../../app/api';
+import { RootState } from '../../app/rootReducer';
+
+type CheckoutState = 'LOADING' | 'READY' | 'ERROR';
 
 export interface CartState {
   items: { [productID: string]: number };
+  checkoutState: CheckoutState;
+  errorMsg: string;
 }
 
-const initialState: CartState = { items: {} };
+const initialState: CartState = { items: {}, checkoutState: 'READY', errorMsg: '' };
+
+export const checkoutCart = createAsyncThunk('cart/checkout', async (_, thunkAPI) => {
+  const { items } = (thunkAPI.getState() as RootState).cart;
+  const res = await checkout(items);
+
+  return res;
+});
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -19,33 +31,38 @@ const cartSlice = createSlice({
         state.items[id] = 1;
       }
     },
+    removeFromCart(state, action: PayloadAction<string>) {
+      delete state.items[action.payload];
+    },
+    updateQuantity(state, action: PayloadAction<{ id: string; quantity: number }>) {
+      const { id, quantity } = action.payload;
+      state.items[id] = quantity;
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(checkoutCart.pending, (state) => {
+      state.checkoutState = 'LOADING';
+    });
+    builder.addCase(
+      checkoutCart.fulfilled,
+      (state, action: PayloadAction<{ success: boolean }>) => {
+        const { success } = action.payload;
+        if (!success) {
+          state.checkoutState = 'ERROR';
+          return;
+        }
+
+        state.checkoutState = 'READY';
+        state.items = {};
+      },
+    );
+    builder.addCase(checkoutCart.rejected, (state, action) => {
+      state.checkoutState = 'ERROR';
+      state.errorMsg = action.error.message || '';
+    });
   },
 });
 
-export const { addToCart } = cartSlice.actions;
-export default cartSlice.reducer;
-
-export function getNumItems(state: RootState) {
-  let numItem = 0;
-
-  const { items } = state.cart;
-
-  Object.values(items).forEach((itemCount) => {
-    numItem += itemCount;
-  });
-
-  return numItem;
-}
-
-export const getMemoizedNumItems = createSelector(
-  (state: RootState) => state.cart.items,
-  (items) => {
-    let numItem = 0;
-
-    Object.values(items).forEach((itemCount) => {
-      numItem += itemCount;
-    });
-
-    return numItem;
-  },
-);
+const { actions, reducer } = cartSlice;
+export const { addToCart, removeFromCart, updateQuantity } = actions;
+export default reducer;
