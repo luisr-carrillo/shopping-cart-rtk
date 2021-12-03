@@ -2,7 +2,7 @@
   "compilerOptions": {
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "useDefineForClassFields": true,
-    "allowJs": false,
+    "allowJs": true,
     "skipLibCheck": false,
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
@@ -16,7 +16,7 @@
     "removeComments": true,
     "resolveJsonModule": true,
     "incremental": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "noEmit": true,
     "noUncheckedIndexedAccess": true,
     "noImplicitAny": true,
@@ -24,13 +24,15 @@
     "strictNullChecks": true,
     "jsx": "react-jsx",
     "typeRoots": ["node_modules/@types"],
-    "types": ["node"]
+    "types": ["node", "jest"]
   },
   "include": [
     "./src",
     "src/**/*.ts",
     "src/**/*.tsx",
     "node_modules/@types",
-    "./vite.config.ts"
+    "./vite.config.ts",
+    "./babel.config.js",
+    "./jest-setup.ts"
   ]
 }

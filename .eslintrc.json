@@ -2,6 +2,7 @@
   "env": {
     "browser": true,
     "es2021": true,
+    "jest": true,
     "node": true
   },
   "parser": "@typescript-eslint/parser",
@@ -28,7 +29,35 @@
     "plugin:jsx-a11y/recommended",
     "plugin:prettier/recommended"
   ],
-  "plugins": ["@typescript-eslint", "import", "jsx-a11y", "react-hooks", "react"],
+  "plugins": [
+    "@typescript-eslint",
+    "import",
+    "jest-dom",
+    "jest",
+    "jsx-a11y",
+    "react-hooks",
+    "react",
+    "testing-library"
+  ],
+  "overrides": [
+    {
+      "files": ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
+      "extends": [
+        "plugin:testing-library/react",
+        "plugin:jest-dom/recommended",
+        "plugin:jest/recommended"
+      ],
+      "rules": {
+        "testing-library/await-async-query": "error",
+        "testing-library/no-await-sync-query": "error",
+        "testing-library/no-dom-import": "off",
+        "jest-dom/prefer-checked": "error",
+        "jest-dom/prefer-enabled-disabled": "error",
+        "jest-dom/prefer-required": "error",
+        "jest-dom/prefer-to-have-attribute": "error"
+      }
+    }
+  ],
   "rules": {
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-shadow": "error",
