@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { checkout } from '../../app/api';
+// eslint-disable-next-line import/no-cycle
 import { RootState } from '../../app/rootReducer';
 
 type CheckoutState = 'LOADING' | 'READY' | 'ERROR';
