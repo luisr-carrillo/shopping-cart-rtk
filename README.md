@@ -2,9 +2,9 @@
 
 Shopping cart application for learning redux, redux toolkit and testing.
 
-Goes along with the egghead this two courses:
+Goes along with this two [egghead.io](https://egghead.io) courses:
 
-- [Modern Redux with Redux Toolkit (RTK) and TypeScript](https://app.egghead.io/playlists/modern-redux-with-redux-toolkit-rtk-and-typescript-64f243c8).
+- [Modern Redux with Redux Toolkit (RTK) and TypeScript](https://egghead.io/courses/modern-redux-with-redux-toolkit-rtk-and-typescript-64f243c8).
 - [Confidently Testing Redux Applications with Jest & TypeScript](https://egghead.io/courses/confidently-testing-redux-applications-with-jest-typescript-16e17d9b).
 
 ## Setup
