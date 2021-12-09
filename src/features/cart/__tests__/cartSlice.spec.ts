@@ -5,6 +5,7 @@ import * as api from '../../../app/api';
 import { Product } from '../../../app/api';
 import type { RootState } from '../../../app/rootReducer';
 import { getStoreWithState } from '../../../app/store';
+import { getStateWithItems } from '../../../test-utils';
 import cartReducer, {
   addToCart,
   CartState,
@@ -35,11 +36,6 @@ jest.mock('../../../app/api', () => {
       return { success: true };
     },
   };
-});
-
-const getStateWithItems = (items: Record<string, number>): RootState => ({
-  products: { products: {} },
-  cart: { checkoutState: 'READY', errorMsg: '', items },
 });
 
 describe('cartReducer', () => {

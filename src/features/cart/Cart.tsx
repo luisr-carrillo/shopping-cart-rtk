@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { FocusEvent, FormEvent } from 'react';
+import React, { FocusEvent, FormEvent } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import styles from './Cart.module.css';
 import { checkoutCart, removeFromCart, updateQuantity } from './cartSlice';
@@ -10,8 +10,8 @@ export const Cart = () => {
   const { products } = useAppSelector((state) => state.products);
   const { items, checkoutState, errorMsg } = useAppSelector((state) => state.cart);
   const totalPrice = useAppSelector(getTotalPrice);
-  const onQuantityChanged = (e: FocusEvent<HTMLInputElement>, id: string) => {
-    const quantity = parseInt(e.target.value, 10) || 0;
+
+  const onQuantityChanged = (id: string, quantity: number) => {
     dispatch(updateQuantity({ id, quantity }));
   };
 
@@ -41,7 +41,7 @@ export const Cart = () => {
         <tbody>
           {Object.entries(items).map(([id, quantity]) => {
             const product = products[id];
-            if (!product) return;
+            if (!product) return null;
 
             const { id: productId, name, price } = product;
 
@@ -51,9 +51,12 @@ export const Cart = () => {
                 <td>
                   <input
                     type="text"
+                    aria-label={`Update ${name} quantity`}
                     className={styles.input}
                     defaultValue={quantity}
-                    onBlur={(e) => onQuantityChanged(e, productId)}
+                    onBlur={(e) =>
+                      onQuantityChanged(productId, parseInt(e.target.value, 10) || 0)
+                    }
                   />
                 </td>
                 <td>${price}</td>
