@@ -1,4 +1,5 @@
 import { combineReducers } from '@reduxjs/toolkit';
+// eslint-disable-next-line import/no-cycle
 import cartReducer from '../features/cart/cartSlice';
 import productsReducer from '../features/products/productsSlice';
 

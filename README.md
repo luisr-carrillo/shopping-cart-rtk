@@ -1,6 +1,11 @@
 ## Redux Shopping Cart
 
-Example shopping cart application for learning redux and redux toolkit. Goes along with the egghead course [Modern Redux with Redux Toolkit (RTK) and TypeScript](https://app.egghead.io/playlists/modern-redux-with-redux-toolkit-rtk-and-typescript-64f243c8).
+Shopping cart application for learning redux, redux toolkit and testing.
+
+Goes along with the egghead this two courses:
+
+- [Modern Redux with Redux Toolkit (RTK) and TypeScript](https://app.egghead.io/playlists/modern-redux-with-redux-toolkit-rtk-and-typescript-64f243c8).
+- [Confidently Testing Redux Applications with Jest & TypeScript](https://egghead.io/courses/confidently-testing-redux-applications-with-jest-typescript-16e17d9b).
 
 ## Setup
 
@@ -8,7 +13,7 @@ Checkout the code base and then type:
 
 ```
 yarn install
-yarn run dev
+yarn dev
 ```
 
 ## Technologies
@@ -17,3 +22,6 @@ yarn run dev
 - [React Router](https://reactrouter.com/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [CSS Modules](https://github.com/css-modules/css-modules)
+- [Redux Toolkit (RTK)](https://redux-toolkit.js.org/)
+- [Jest](https://jestjs.io/)
+- [Testing Library](https://testing-library.com/)
