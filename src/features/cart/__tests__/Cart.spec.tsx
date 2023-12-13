@@ -99,4 +99,7 @@ describe('<Cart />', () => {
     expect(screen.getAllByRole('row')).toHaveLength(2);
     expect(screen.getByRole('table')).not.toHaveClass('checkoutError');
   });
+  test('should fail', () => {
+    expect(false).toBe(true);
+  });
 });

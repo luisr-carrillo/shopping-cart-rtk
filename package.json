@@ -7,6 +7,7 @@
     "serve": "vite preview",
     "test": "jest",
     "test:watch": "yarn test --watchAll",
+    "test:ci": "yarn test --ci --json --outputFile=results.json",
     "clean": "prettier --write . && eslint --fix ."
   },
   "jest": {

@@ -34,5 +34,6 @@
     "./vite.config.ts",
     "./babel.config.js",
     "./jest-setup.ts"
-  ]
+  ],
+  "exclude": [".ci/scripts/createMarkdownReport.js", "node_modules"]
 }
