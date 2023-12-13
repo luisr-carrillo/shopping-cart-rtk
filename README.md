@@ -25,3 +25,6 @@ yarn dev
 - [Redux Toolkit (RTK)](https://redux-toolkit.js.org/)
 - [Jest](https://jestjs.io/)
 - [Testing Library](https://testing-library.com/)
+- [GitHub Actions](https://github.com/)
+
+Last Test: 13/Dec/23 - 12:39
