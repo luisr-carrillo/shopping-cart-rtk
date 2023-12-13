@@ -28,7 +28,7 @@ jobs:
 
       - name: Create report
         if: ${{ always() }}
-        run: node createMarkdownReport.js
+        run: node ./ci/scripts/createMarkdownReport.js
 
       - name: Upload Markdown Report
         if: ${{ always() }}
