@@ -6,3 +6,4 @@ dist
 dist-ssr
 *.local
 coverage
+TEST_RESULTS.md
