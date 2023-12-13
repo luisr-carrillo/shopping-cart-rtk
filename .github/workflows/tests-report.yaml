@@ -24,11 +24,14 @@ jobs:
 
       - name: Run Jest Tests
         run: yarn test:ci
+        continue-on-error: true
 
       - name: Create report
+        if: ${{ always() }}
         run: node createMarkdownReport.js
 
       - name: Upload Markdown Report
+        if: ${{ always() }}
         uses: actions/upload-artifact@v3
         with:
           name: markdown-report
@@ -37,6 +40,7 @@ jobs:
   comment:
     needs: build
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout to repo
         uses: actions/checkout@v4
