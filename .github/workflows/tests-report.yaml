@@ -49,6 +49,8 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: markdown-report
+      - name: Check all files
+        run: ls -la
 
       - name: Post Comment
         uses: actions/github-script@v7
